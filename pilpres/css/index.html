@@ -1,0 +1,583 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+			  font: 10px sans-serif;
+            }
+			.y.axisRight text {
+				fill: orange;
+			}
+			.y.axisLeft text {
+				fill: steelblue;
+			}
+			.axis path,
+			.axis line {
+			  fill: none;
+			  stroke: #000;
+			  shape-rendering: crispEdges;
+			}
+			.bar1 {
+			  fill: steelblue;
+			}
+			.bar2 {
+			  fill: orange;
+			}
+			.x.axis path {
+			  display: none;
+			}
+			
+			/* chart alvi */
+			svg {
+			  font: 10px sans-serif;
+			}
+
+			.background path {
+			  fill: none;
+			  stroke: #ddd;
+			  shape-rendering: crispEdges;
+			}
+
+			.foreground path {
+			  fill: none;
+			  stroke: #265A88;
+			}
+
+			.brush .extent {
+			  fill-opacity: .3;
+			  stroke: #fff;
+			  shape-rendering: crispEdges;
+			}
+
+			.axis line,
+			.axis path {
+			  fill: none;
+			  stroke: #000;
+			  shape-rendering: crispEdges;
+			}
+
+			.axis text {
+			  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+			}
+			
+			/* barchart */
+			body {
+			  font: 10px sans-serif;
+			}
+			.y.axisRight text {
+				fill: orange;
+			}
+			.y.axisLeft text {
+				fill: steelblue;
+			}
+			.axis path,
+			.axis line {
+			  fill: none;
+			  stroke: #000;
+			  shape-rendering: crispEdges;
+			}
+			.bar1 {
+			  fill: steelblue;
+			}
+			.bar2 {
+			  fill: orange;
+			}
+			.x.axis path {
+			  display: none;
+			}
+
+			
+			/* big numbers */
+			.btn{
+				text-align: center;
+			}
+			.big-num-title{
+				text-align: center;
+				font-size: 200%;
+			}
+			
+			.extra_big_numbers{
+				text-align: center;
+				font-size: 1000%;
+			}
+			
+			
+			/*parallelCoord 2*/
+			#wrapper {
+			   position: relative;
+			   float: left;
+			   top: 20px;
+			   font-family: sans-serif;
+			   font-size: 10px;
+			}
+
+			#tooltip{
+				font-family: sans-serif;
+				font-size: 14px;
+				font-weight: bold;
+				color:black;
+			}
+        </style>
+		<link rel="stylesheet" type="text/css" href="http://mostapharoudsari.github.io/Honeybee/pc_source_files/css/d3.parcoords.css"> 
+		<script src="http://d3js.org/d3.v3.min.js"></script> 
+		<script src = "http://mostapharoudsari.github.io/Honeybee/pc_source_files/d3/d3.parcoords.js"></script>
+		<!-- for THE MAP -->
+		<script type="text/javascript" src="js/jquery.min.js"></script> 
+		<script type="text/javascript" src="js/raphael-min.js"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				//gambar peta
+				$.getScript("js/petaindonesia.js");				
+
+				$( "#map" ).on( "petaklik", function(event, idwilayah) {
+					switch(idwilayah){
+						case '1':
+						$( "#bigNum" ).html('27');
+						$( "#bigProv" ).html('Bangka Belitung');
+						break;
+						case '2':
+						$( "#bigNum" ).html('29');
+						$( "#bigProv" ).html('Bengkulu');
+						break;
+						case '3':
+						$( "#bigNum" ).html('34');
+						$( "#bigProv" ).html('Jambi');
+						break;
+						case '4':
+						$( "#bigNum" ).html('35');
+						$( "#bigProv" ).html('Kepulauan Riau');
+						break;
+						case '5':
+						$( "#bigNum" ).html('30');
+						$( "#bigProv" ).html('Lampung');
+						break;
+						case '6':
+						$( "#bigNum" ).html('47');
+						$( "#bigProv" ).html('Aceh');
+						break;
+						case '7':
+						$( "#bigNum" ).html('24');
+						$( "#bigProv" ).html('Riau');
+						break;
+						case '8':
+						$( "#bigNum" ).html('27');
+						$( "#bigProv" ).html('Sumatra Barat');
+						break;
+						case '9':
+						$( "#bigNum" ).html('29');
+						$( "#bigProv" ).html('Sumatra Selatan');
+						break;
+						case '10':
+						$( "#bigNum" ).html('40');
+						$( "#bigProv" ).html('Sumatra Utara');
+						break;
+						case '11':
+						$( "#bigNum" ).html('32');
+						$( "#bigProv" ).html('Banten');
+						break;
+						case '12':
+						$( "#bigNum" ).html('25');
+						$( "#bigProv" ).html('Yogyakarta');
+						break;
+						case '13':
+						$( "#bigNum" ).html('22');
+						$( "#bigProv" ).html('Jakarta');
+						break;
+						case '14':
+						$( "#bigNum" ).html('30');						
+						$( "#bigProv" ).html('Jawa Barat');
+						break;
+						case '15':
+						$( "#bigNum" ).html('32');
+						$( "#bigProv" ).html('Jawa Tengah');
+							break;
+						case '16':
+						$( "#bigNum" ).html('30');
+						$( "#bigProv" ).html('Jawa Timur');
+						break;
+						case '17':
+						$( "#bigNum" ).html('31');
+						$( "#bigProv" ).html('Kalimantan Barat');
+						break;
+						case '18':
+						$( "#bigNum" ).html('49');
+						$( "#bigProv" ).html('Kalimantan Tengah');
+						break;
+						case '19':
+						$( "#bigNum" ).html('44');
+						$( "#bigProv" ).html('Kalimantan Selatan');
+						break;
+						case '20':
+						$( "#bigNum" ).html('21');
+						$( "#bigProv" ).html('Kalimantan Timur');
+						break;
+						case '21':
+						$( "#bigNum" ).html('67');
+						$( "#bigProv" ).html('Gorontalo');
+						break;
+						case '22':
+						$( "#bigNum" ).html('60');
+						$( "#bigProv" ).html('Sulawesi Barat');
+						break;
+						case '23':
+						$( "#bigNum" ).html('25');
+						$( "#bigProv" ).html('Sulawesi Selatan');
+						break;
+						case '24':
+						$( "#bigNum" ).html('58');
+						$( "#bigProv" ).html('Sulawesi Tengah');
+						break;
+						case '25':
+						$( "#bigNum" ).html('45');
+						$( "#bigProv" ).html('Sulawesi Tenggara');
+						break;
+						case '26':
+						$( "#bigNum" ).html('33');
+						$( "#bigProv" ).html('Sulawesi Utara');
+						break;
+						case '27':
+						$( "#bigNum" ).html('29');
+						$( "#bigProv" ).html('Bali');
+						break;
+						case '28':
+						$( "#bigNum" ).html('57');
+						$( "#bigProv" ).html('NTB');
+						break;
+						case '29':
+						$( "#bigNum" ).html('45');
+						$( "#bigProv" ).html('NTT');
+						break;
+						case '30':
+						$( "#bigNum" ).html('36');
+						$( "#bigProv" ).html('Maluku');
+						break;
+						case '31':
+						$( "#bigNum" ).html('62');
+						$( "#bigProv" ).html('Maluku Utara');
+						break;
+						case '32':
+						$( "#bigNum" ).html('74');
+						$( "#bigProv" ).html('Papua Barat');
+						break;
+						case '33':
+						$( "#bigNum" ).html('54');
+						$( "#bigProv" ).html('Papua');
+						break;
+						case '34':
+						$( "#bigNum" ).html('186');break;
+						default:
+						$( "#bigNum" ).html('0');
+					}
+				});	
+			});
+		</script>
+		
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+		<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Child Mortality</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+	
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+	  
+		<div class="row">
+			<div class="col-sm-3 btn-lg"><p><a  href="#" align="center">
+				<div id="bigProv" class="big-num-title">Yogyakarta</div>
+				<div id="bigNum" class="extra_big_numbers" >25</div>
+			</a></p></div>			
+			<!--<div class="col-sm-9"><p><a class="btn btn-primary btn-lg" href="#" role="button">Untuk peta &raquo;</a></p></div>-->
+			<div class="col-sm-9" id="map"></div>		
+				
+		</div>
+        <!--<h1>Hello, world!</h1>-->
+        <!--<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>-->
+		<!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>-->
+		
+		
+      </div>
+    </div>
+	
+	
+    <div class="container well" id="parallelCoord">
+      <!-- For Parallel Coord -->
+      <div class="row">
+		
+		<script>
+			var margin = {top: 30, right: 40, bottom: 10, left: 5},
+				width = 1170 - margin.left - margin.right,
+				height = 500 - margin.top - margin.bottom;
+
+			var x = d3.scale.ordinal().rangePoints([0, width], 1),
+				y = {};
+
+			var line = d3.svg.line(),
+				axis = d3.svg.axis().orient("left"),
+				background,
+				foreground;
+
+			var svg = d3.select("#parallelCoord").append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.attr("class", "col-sm-12")
+			  .append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+			d3.csv("dataset/combined.csv", function(error, combined) {
+
+			  // Extract the list of dimensions and create a scale for each.
+			  x.domain(dimensions = d3.keys(combined[0]).filter(function(d) {
+				return d != "provinsi" && (y[d] = d3.scale.linear()
+					.domain(d3.extent(combined, function(p) { return +p[d]; }))
+					.range([height, 0]));
+			  }));
+
+			  // Add grey background lines for context.
+			  background = svg.append("g")
+				  .attr("class", "background")
+				.selectAll("path")
+				  .data(combined)
+				.enter().append("path")
+				  .attr("d", path);
+
+			  // Add blue foreground lines for focus.
+			  foreground = svg.append("g")
+				  .attr("class", "foreground")
+				.selectAll("path")
+				  .data(combined)
+				.enter().append("path")
+				  .attr("d", path);
+
+			  // Add a group element for each dimension.
+			  var g = svg.selectAll(".dimension")
+				  .data(dimensions)
+				.enter().append("g")
+				  .attr("class", "dimension")
+				  .attr("transform", function(d) { return "translate(" + x(d) + ")"; });
+
+			  // Add an axis and title.
+			  g.append("g")
+				  .attr("class", "axis")
+				  .each(function(d) { d3.select(this).call(axis.scale(y[d])); })
+				.append("text")
+				  .style("text-anchor", "middle")
+				  .attr("y", -9)
+				  .text(function(d) { return d; });
+
+			  // Add and store a brush for each axis.
+			  g.append("g")
+				  .attr("class", "brush")
+				  .each(function(d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+				.selectAll("rect")
+				  .attr("x", -8)
+				  .attr("width", 16);
+			});
+
+			// Returns the path for a given data point.
+			function path(d) {
+			  return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+			}
+
+			// Handles a brush event, toggling the display of foreground lines.
+			function brush() {
+			  var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
+				  extents = actives.map(function(p) { return y[p].brush.extent(); });
+			  foreground.style("display", function(d) {
+				return actives.every(function(p, i) {
+				  return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+				}) ? null : "none";
+			  });
+			}
+
+			</script>
+			
+		
+	</div>
+	</div>
+	
+	  <div class="container">	 
+	  
+	  <div class="row">
+		<div class="col-sm-2"><input type="radio" name="sex" value="male" checked>PDB</div>
+		<div class="col-sm-2"><input type="radio" name="sex" value="male" checked>Hospital</div>
+		<div class="col-sm-2"><input type="radio" name="sex" value="male" checked>Puskesmas</div>
+		<div class="col-sm-2"><input type="radio" name="sex" value="male" checked>Urban Poverty</div>
+		<div class="col-sm-2"><input type="radio" name="sex" value="male" checked>Rural Poverty</div>
+		<div class="col-sm-2"><input type="radio" name="sex" value="male" checked>Length of Study</div>
+	  </div>
+	  
+	  <br />
+	  
+	  <div class="row">
+		<div class="col-sm-12" id="barchart">
+		
+		
+		<script>				
+				
+				var marginBar = {top: 25, right: 25, bottom: 125, left: 25},
+					widthBar = 1150 - marginBar.left - marginBar.right,
+					heightBar = 500 - marginBar.top - marginBar.bottom;
+				var xBar = d3.scale.ordinal()
+					.rangeRoundBands([0, widthBar], .1);
+				var y0Bar = d3.scale.linear()
+					.domain([0, 80])
+					.range([heightBar, 0]),
+				y1Bar = d3.scale.linear()
+					//.domain([20, 80])
+					.domain([0, 150])
+					.range([heightBar, 0]);
+				var xAxis = d3.svg.axis()
+					.scale(xBar)
+					.orient("bottom");
+				// create left yAxis
+				var yAxisLeft = d3.svg.axis()
+					.scale(y0Bar)
+					.ticks(4)
+					.orient("left");
+				// create right yAxis
+				var yAxisRight = d3.svg.axis()
+					.scale(y1Bar)
+					.ticks(6)
+					.orient("right");
+				var svgBar = d3.select("#barchart").append("svg")
+					.attr("width", widthBar + marginBar.left + marginBar.right)
+					.attr("height", heightBar + marginBar.top + marginBar.bottom)
+				  .append("g")
+					.attr("class", "graph")
+					.attr("transform", "translate(" + marginBar.left + "," + marginBar.top + ")");
+				d3.csv("dataset/combined.csv", type, function(error, dataBar) {
+				//var st = fData.filter(function(s){ return s.State == d[0];})[0],
+				//if (d.close <= 400) {return "red"}
+				// return d.provinsi
+				  
+				  //xBar.domain(dataBar.map(function(d) { 
+					//if(d.provinsi=="Bali"){return "Bali"}
+					//else{return "Banten"}; }));
+					
+					xBar.domain(dataBar.map(function(d) { 
+					return d.provinsi;
+					}));
+				  y0Bar.domain([0, d3.max(dataBar, function(d) { return d.Hospital; })]);				  
+				  svgBar.append("g")
+					  .attr("class", "x axis")
+					  .attr("transform", "translate(0," + heightBar + ")")	  
+					  .call(xAxis)
+					.selectAll("text")	
+					  .attr("transform", "rotate(-90)")
+					  .attr("y", -4)
+					  .attr("x", -10)
+						.style("text-anchor", "end");					  
+					  
+				  svgBar.append("g")
+					  .attr("class", "y axis axisLeft")
+					  .attr("transform", "translate(0,0)")
+					  .call(yAxisLeft)
+					.append("text")
+					  .attr("y", 6)
+					  .attr("dy", "-2em")
+					  .attr("transform", "rotate(-90)")
+					  .style("text-anchor", "end")
+					  .style("text-anchor", "end")
+					  .text("Mortality");
+					
+				  svgBar.append("g")
+					  .attr("class", "y axis axisRight")
+					  .attr("transform", "translate(" + (widthBar) + ",0)")
+					  .call(yAxisRight)
+					.append("text")
+					  .attr("y", 6)
+					  .attr("dy", "-2em")
+					  .attr("dx", "2em")
+					  .attr("transform", "rotate(-90)")
+					  .style("text-anchor", "end")
+					  .text("Hospital");
+				  barsBar = svgBar.selectAll(".bar").data(dataBar).enter();
+				  barsBar.append("rect")
+					  .attr("class", "bar1")
+					  .attr("x", function(d) { return xBar(d.provinsi); })
+					  .attr("width", xBar.rangeBand()/2)
+					  .attr("y", function(d) { return y0Bar(d.Hospital); })
+					  .attr("height", function(d,i,j) { return heightBar - y0Bar(d.Hospital); }); 
+				  barsBar.append("rect")
+					  .attr("class", "bar2")
+					  .attr("x", function(d) { return xBar(d.provinsi) + xBar.rangeBand()/2; })
+					  .attr("width", xBar.rangeBand() / 2)
+					  .attr("y", function(d) { return y1Bar(d.Hospital); })
+					  .attr("height", function(d,i,j) { return heightBar - y1Bar(d.Hospital); }); 
+				});
+				function type(d) {
+				  d.Hospital = +d.Hospital;
+				  return d;
+				}
+				</script>	
+		</div>
+	  
+	</div>  
+
+      
+    </div> <!-- /container -->       
+	
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+	<!--<div class="container">-->
+		<div class="row bg-important" >
+			<div class="col-sm-12" align="center">				
+			  <footer>
+				<p>&copy; Simpleo 2015</p>
+			  </footer>
+			</div>
+		</div>
+	<!--</div>-->
+</html>

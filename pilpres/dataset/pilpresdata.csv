@@ -1,0 +1,35 @@
+id_provinsi,capres,provinsi,prov.asli,no.urut,suara,persen,latitude,longitude,warna
+11,Prabowo,Aceh,Aceh,1,1089290,54.39,4.695.135,967.493.993,#0000ff
+12,Jokowi,Sumut,Sumatera Utara,2,3494835,55.23,21.153.547,995.450.974,#ff0000
+13,Prabowo,Sumbar,Sumatera Barat,1,1797505,76.92,-0.7399397,1.008.000.051,#0000ff
+14,Prabowo,Riau,Riau,1,1349338,50.12,0.2933469,1.017.068.294,#0000ff
+15,Jokowi,Jambi,Jambi,2,897787,50.75,-14.851.831,1.024.380.581,#ff0000
+16,Prabowo,Sumsel,Sumatera Selatan,1,2132163,51.26,-33.194.374,103.914.399,#0000ff
+17,Jokowi,Bengkulu,Bengkulu,2,523669,54.73,-35.778.471,1.023.463.875,#ff0000
+18,Jokowi,Lampung,Lampung,2,2299889,53.07,-45.585.849,1.054.068.079,#ff0000
+19,Jokowi,Babel,Bangka Belitung,2,412359,67.26,-27.410.513,1.064.405.872,#ff0000
+21,Jokowi,Kepri,Kepulauan Riau,2,491819,59.63,39.456.514,1.081.428.669,#ff0000
+31,Jokowi,DKI,Jakarta,2,2861417,53.09,-6.211.544,106.845.172,#ff0000
+32,Prabowo,Jabar,Jawa Barat,1,14167381,59.78,-7.090.911,107.668.887,#0000ff
+33,Jokowi,Jateng,Jawa Tengah,2,12959540,66.65,-7.150.975,1.101.402.594,#ff0000
+34,Jokowi,DIY,Daerah Istimewa Yogyakarta,2,1234249,55.81,-78.753.849,1.104.262.088,#ff0000
+35,Jokowi,Jatim,Jawa Timur,2,11669313,53.17,-75.360.639,1.122.384.017,#ff0000
+36,Prabowo,Banten,Banten,1,3192671,57.01,-64.058.172,1.060.640.179,#0000ff
+51,Jokowi,Bali,Bali,2,1535110,71.42,-84.095.178,115.188.916,#ff0000
+52,Prabowo,NTB,Nusa Tenggara Barat,1,1844178,72.45,-86.529.334,1.173.616.476,#0000ff
+53,Jokowi,NTT,Nusa Tenggara Timur,2,1528783,66.12,-86.573.819,1.210.793.705,#ff0000
+61,Jokowi,Kalbar,Kalimantan Barat,2,1573046,60.38,-0.2787808,1.114.752.851,#ff0000
+62,Jokowi,Kalteng,Kalimantan Tengah,2,696199,59.79,-16.814.878,1.133.823.545,#ff0000
+63,Prabowo,Kalsel,Kalimantan Selatan,1,941809,50.05,-30.926.415,1.152.837.585,#0000ff
+64,Jokowi,Kaltim,Kalimantan Timur,2,1190156,63.38,16.406.296,116.419.389,#ff0000
+65,-,Kalut,Kalimantan Utara,-,-,-,-,-,#ffffff
+71,Jokowi,Sulut,Sulawesi Utara,2,724553,53.88,0.6246932,1.239.750.018,#ff0000
+72,Jokowi,Sulteng,Sulawesi Tengah,2,768091,54.87,-14.300.254,1.214.456.179,#ff0000
+73,Jokowi,Sulsel,Sulawesi Selatan,2,3037026,71.43,-36.687.994,1.199.740.534,#ff0000
+74,Jokowi,Sultra,Sulawesi Tenggara,2,622217,54.09,-414.491,122.174.605,#ff0000
+75,Prabowo,Gorontalo,Gorontalo,1,378735,63.01,0.6999372,1.224.467.238,#0000ff
+76,Jokowi,Sulbar,Sulawesi Barat,2,456021,73.37,-28.441.371,1.192.320.784,#ff0000
+81,Jokowi,Maluku,Maluku,2,443040,50.52,-32.384.616,1.301.452.734,#ff0000
+82,Prabowo,Maluku Utara,Maluku Utara,1,306774,54.45,15.709.993,1.278.087.693,#0000ff
+91,Jokowi,Papua Barat,Papua Barat,2,360381,67.51,-4.269.928,1.380.803.529,#ff0000
+92,Jokowi,Papua,Papua,2,2058517,73.16,-13.361.154,1.331.747.162,#ff0000
