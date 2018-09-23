@@ -92,7 +92,7 @@ d3.json("js/provinsi.json", function(error, topology) {
       	.style('stroke','black');
       })     
       .on("mouseover",function(d){
-        htmldata = data[prov2id(d.properties.id_provinsi)]['capres'] + " : " + data[prov2id(d.properties.id_provinsi)]['persen'] + " %";
+        htmldata = data[prov2id(d.properties.id_provinsi)]['prov.asli']+"<br>"+ data[prov2id(d.properties.id_provinsi)]['capres'] + " : " + data[prov2id(d.properties.id_provinsi)]['persen'] + " %";
         
         div.transition()		
                 .duration(200)		
