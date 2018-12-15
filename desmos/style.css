@@ -298,3 +298,21 @@ body{
         position: relative
     }
 }
+
+a:hover {
+    cursor:pointer;
+   }
+
+.btn-info {
+    background-color:#0cf;
+    color: #2f383d
+}
+
+.btn-code {
+    background-color: #71e134;
+    color: #2f383d;
+}
+
+.btn-code:hover{
+    color: #FFF;
+}

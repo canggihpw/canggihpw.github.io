@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Doraemon</title>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+</script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-3">
+            <img src="contents/doraemon/1.jpg" width="100%">
+        </div>
+
+        <div class="col-md-9" style="text-align: justify;">
+            In the beginning, I actually just wanted to draw Doraemon's head. Thus, I set the origin coordinates (0,0)
+            to align with the center of the head. 
+            The first line that I drew was the outer line of the Doraemon's head. To make it easir for further drawing, I split the outer line into two lines: top and bottom parts.
+            I create the top part using Eq. \eqref{eq:one} as follows:
+
+            $$ 
+            \begin{equation}\label{eq:one}
+            y_1(x) = \sqrt{(12-x^2)}
+            \end{equation}
+            $$
+            
+            As for the bottom part, it is quite tricky since we are not drawing a full half-circle like the top one. 
+            We have to make an empty area for Doraemon's collar. To deal with this, I use piece-wise function in Eq. \eqref{eq:two} to draw two arcs of outer head.
+    
+            $$
+            \begin{equation}\label{eq:two}
+            y_2(x) =
+            \begin{cases}
+            - y_1(x) & \text{for } x \leq -2.2 \\
+            - y_1(x) & \text{for } x \geq 2.2
+            \end{cases}
+            \end{equation}
+            $$
+
+            Finally, we got the basic lines of the Doraemon's head.
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-3">
+                <img src="contents/doraemon/2.jpg" width="100%">
+            </div>
+    
+            <div class="col-md-9" style="text-align: justify;">
+                Using similar technique, we draw more lines. 
+                The most challenging part here is how to colorize the are. For example, the Doramemon's eyeball here.
+                At first time, it seems complicated, but once you get used to, it is easy.
+                I use implicit equation as shown in Eq. \eqref{eq:three}. Here, we colorize the area between two functions: $d_1(x)$ and $d_2(x)$. 
+                We also set the limit of $x$ value. The result is shown in the image left.
+                $$
+                \begin{equation}\label{eq:three}
+                d_2(x) \leq y \leq d_1(x) \{0.478 \leq x \leq 1 \}
+                \end{equation},
+                $$
+                where,
+                $$ d_1(x) = \sqrt{0.125 - (x-0.5)^2} + 2 $$
+                $$ d_2(x) = - \sqrt{0.125 - (x-0.5)^2} + 2 $$
+
+                How do I found those exact function? Using intuition, experience, and a bit trial-error. So, just do it, and feel the excitement. :D
+            </div>
+        </div>
+
+</body>
+
+</html>
