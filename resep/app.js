@@ -124,6 +124,9 @@ function getCheckboxValue(id) {
 }
 
 function collectFormData() {
+  // Get current token for tracking who input the data
+  const currentToken = getTokenFromStorage() || "unknown";
+
   // Collect TABEL 1 data
   const resepData = {
     tanggalResep: document.getElementById("tanggalResep").value,
@@ -140,6 +143,7 @@ function collectFormData() {
     praescriptio: getCheckboxValue("praescriptio"),
     signatura: getCheckboxValue("signatura"),
     subscriptio: getCheckboxValue("subscriptio"),
+    inputBy: currentToken, // Track who input this data
   };
 
   // Collect TABEL 2 data (all medicines)
@@ -157,6 +161,7 @@ function collectFormData() {
       aturanPakai: document.getElementById(`aturanPakai-${id}`).value,
       jumlahObat: parseInt(document.getElementById(`jumlahObat-${id}`).value),
       satuanObat: document.getElementById(`satuanObat-${id}`).value,
+      inputBy: currentToken, // Track who input this data
     });
   });
 
@@ -177,8 +182,8 @@ function showAlert(message, type = "success") {
     alertDiv.remove();
   }, 5000);
 
-  // Scroll to top to show alert
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Scroll to alert at bottom to show it
+  alertContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function showLoading(show) {
@@ -262,7 +267,7 @@ document
         showAlert(
           result.demo
             ? "✅ Data berhasil disimpan (DEMO MODE - lihat console untuk detail)"
-            : "✅ Data berhasil disimpan ke Google Sheets!",
+            : "✅ Data berhasil disimpan",
           "success",
         );
 

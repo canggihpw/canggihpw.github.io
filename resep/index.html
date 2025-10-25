@@ -1,367 +1,455 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Entry Data Resep</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            padding: 30px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
-        }
-
-        h2 {
-            color: #667eea;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: 20px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: auto;
-            margin-right: 8px;
-        }
-
-        .checkbox-item label {
-            margin: 0;
-            font-weight: normal;
-        }
-
-        .medicine-entry {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #667eea;
-            position: relative;
-        }
-
-        .medicine-entry h3 {
-            color: #667eea;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .remove-medicine {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #ff4757;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .remove-medicine:hover {
-            background: #ff3838;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #48dbfb;
-            color: white;
-            margin-right: 10px;
-        }
-
-        .btn-secondary:hover {
-            background: #0abde3;
-        }
-
-        .btn-success {
-            background: #1dd1a1;
-            color: white;
-            width: 100%;
-            margin-top: 30px;
-            font-size: 18px;
-            padding: 15px;
-        }
-
-        .btn-success:hover {
-            background: #10ac84;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(29, 209, 161, 0.4);
-        }
-
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sistem Entry Data Resep</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
 
-            .row {
-                grid-template-columns: 1fr;
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 20px;
+                min-height: 100vh;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+                padding: 30px;
             }
 
             h1 {
-                font-size: 20px;
+                color: #333;
+                margin-bottom: 10px;
+                font-size: 24px;
             }
 
             h2 {
-                font-size: 18px;
+                color: #667eea;
+                margin-top: 30px;
+                margin-bottom: 20px;
+                font-size: 20px;
+                border-bottom: 2px solid #667eea;
+                padding-bottom: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: #555;
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: border-color 0.3s;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                outline: none;
+                border-color: #667eea;
+            }
+
+            textarea {
+                resize: vertical;
+                min-height: 80px;
+            }
+
+            .checkbox-group {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            .checkbox-item {
+                display: flex;
+                align-items: center;
+            }
+
+            .checkbox-item input[type="checkbox"] {
+                width: auto;
+                margin-right: 8px;
+            }
+
+            .checkbox-item label {
+                margin: 0;
+                font-weight: normal;
+            }
+
+            .medicine-entry {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                border-left: 4px solid #667eea;
+                position: relative;
+            }
+
+            .medicine-entry h3 {
+                color: #667eea;
+                font-size: 16px;
+                margin-bottom: 15px;
             }
 
             .remove-medicine {
-                position: static;
-                width: 100%;
-                margin-top: 10px;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: #ff4757;
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
             }
-        }
 
-        .alert {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+            .remove-medicine:hover {
+                background: #ff3838;
+            }
 
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
+            .btn {
+                padding: 12px 24px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
 
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
+            .btn-primary {
+                background: #667eea;
+                color: white;
+            }
 
-        .hidden {
-            display: none;
-        }
+            .btn-primary:hover {
+                background: #5568d3;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
 
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
+            .btn-secondary {
+                background: #48dbfb;
+                color: white;
+                margin-right: 10px;
+            }
 
-        .loading.active {
-            display: block;
-        }
+            .btn-secondary:hover {
+                background: #0abde3;
+            }
 
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
-        }
+            .btn-success {
+                background: #1dd1a1;
+                color: white;
+                width: 100%;
+                margin-top: 30px;
+                font-size: 18px;
+                padding: 15px;
+            }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>📋 Sistem Entry Data Resep</h1>
-        <p style="color: #666; margin-bottom: 20px;">Masukkan data resep dan obat-obatan</p>
+            .btn-success:hover {
+                background: #10ac84;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(29, 209, 161, 0.4);
+            }
 
-        <div id="alertContainer"></div>
+            .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
 
-        <div class="loading" id="loadingIndicator">
-            <div class="spinner"></div>
-            <p>Mengirim data...</p>
+            @media (max-width: 600px) {
+                .container {
+                    padding: 20px;
+                }
+
+                .row {
+                    grid-template-columns: 1fr;
+                }
+
+                h1 {
+                    font-size: 20px;
+                }
+
+                h2 {
+                    font-size: 18px;
+                }
+
+                .remove-medicine {
+                    position: static;
+                    width: 100%;
+                    margin-top: 10px;
+                }
+            }
+
+            .alert {
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+
+            .alert-success {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+
+            .alert-error {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .loading {
+                display: none;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .loading.active {
+                display: block;
+            }
+
+            .spinner {
+                border: 4px solid #f3f3f3;
+                border-top: 4px solid #667eea;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                margin: 0 auto 10px;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>📋 Sistem Entry Data Resep</h1>
+            <p style="color: #666; margin-bottom: 20px">
+                Masukkan data resep dan obat-obatan
+            </p>
+
+            <form id="resepForm">
+                <!-- TABEL 1: Data Resep -->
+                <h2>📝 Data Resep</h2>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="tanggalResep">Tanggal Resep *</label>
+                        <input
+                            type="date"
+                            id="tanggalResep"
+                            name="tanggalResep"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="noResep">No. Resep *</label>
+                        <input
+                            type="text"
+                            id="noResep"
+                            name="noResep"
+                            required
+                            placeholder="Contoh: RX-2025-001"
+                        />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="jenisKelamin">Jenis Kelamin *</label>
+                        <select id="jenisKelamin" name="jenisKelamin" required>
+                            <option value="">Pilih...</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="umur">Umur (tahun) *</label>
+                        <input
+                            type="number"
+                            id="umur"
+                            name="umur"
+                            required
+                            min="0"
+                            max="150"
+                        />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="bb">Berat Badan (kg) *</label>
+                        <input
+                            type="number"
+                            id="bb"
+                            name="bb"
+                            required
+                            min="0"
+                            max="300"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diagnosa">Diagnosa</label>
+                        <input
+                            type="text"
+                            id="diagnosa"
+                            name="diagnosa"
+                            placeholder="Contoh: ISPA, Demam"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Kelengkapan Resep</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="identitasDokter"
+                                name="identitasDokter"
+                                value="Ada"
+                            />
+                            <label for="identitasDokter"
+                                >Identitas Dokter</label
+                            >
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="identitasPasien"
+                                name="identitasPasien"
+                                value="Ada"
+                            />
+                            <label for="identitasPasien"
+                                >Identitas Pasien</label
+                            >
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="tanggalResepCheck"
+                                name="tanggalResepCheck"
+                                value="Ada"
+                            />
+                            <label for="tanggalResepCheck">Tanggal Resep</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="noResepCheck"
+                                name="noResepCheck"
+                                value="Ada"
+                            />
+                            <label for="noResepCheck">No. Resep</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="rCheck"
+                                name="rCheck"
+                                value="Ada"
+                            />
+                            <label for="rCheck">R/</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="praescriptio"
+                                name="praescriptio"
+                                value="Ada"
+                            />
+                            <label for="praescriptio">Praescriptio</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="signatura"
+                                name="signatura"
+                                value="Ada"
+                            />
+                            <label for="signatura">Signatura</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="subscriptio"
+                                name="subscriptio"
+                                value="Ada"
+                            />
+                            <label for="subscriptio">Subscriptio</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABEL 2: Data Obat (Dynamic) -->
+                <h2>💊 Data Obat</h2>
+
+                <div id="medicineContainer"></div>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="addMedicineEntry()"
+                >
+                    ➕ Tambah Obat
+                </button>
+
+                <button type="submit" class="btn btn-success">
+                    ✅ Simpan Data Resep
+                </button>
+
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>Mengirim data...</p>
+                </div>
+
+                <div id="alertContainer"></div>
+            </form>
         </div>
 
-        <form id="resepForm">
-            <!-- TABEL 1: Data Resep -->
-            <h2>📝 Data Resep</h2>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="tanggalResep">Tanggal Resep *</label>
-                    <input type="date" id="tanggalResep" name="tanggalResep" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="noResep">No. Resep *</label>
-                    <input type="text" id="noResep" name="noResep" required placeholder="Contoh: RX-2025-001">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="jenisKelamin">Jenis Kelamin *</label>
-                    <select id="jenisKelamin" name="jenisKelamin" required>
-                        <option value="">Pilih...</option>
-                        <option value="Laki-laki">Laki-laki</option>
-                        <option value="Perempuan">Perempuan</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="umur">Umur (tahun) *</label>
-                    <input type="number" id="umur" name="umur" required min="0" max="150">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="bb">Berat Badan (kg) *</label>
-                    <input type="number" id="bb" name="bb" required min="0" max="300">
-                </div>
-
-                <div class="form-group">
-                    <label for="diagnosa">Diagnosa</label>
-                    <input type="text" id="diagnosa" name="diagnosa" placeholder="Contoh: ISPA, Demam">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Kelengkapan Resep</label>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="identitasDokter" name="identitasDokter" value="Ada">
-                        <label for="identitasDokter">Identitas Dokter</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="identitasPasien" name="identitasPasien" value="Ada">
-                        <label for="identitasPasien">Identitas Pasien</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="tanggalResepCheck" name="tanggalResepCheck" value="Ada">
-                        <label for="tanggalResepCheck">Tanggal Resep</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="noResepCheck" name="noResepCheck" value="Ada">
-                        <label for="noResepCheck">No. Resep</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="rCheck" name="rCheck" value="Ada">
-                        <label for="rCheck">R/</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="praescriptio" name="praescriptio" value="Ada">
-                        <label for="praescriptio">Praescriptio</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="signatura" name="signatura" value="Ada">
-                        <label for="signatura">Signatura</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="subscriptio" name="subscriptio" value="Ada">
-                        <label for="subscriptio">Subscriptio</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TABEL 2: Data Obat (Dynamic) -->
-            <h2>💊 Data Obat</h2>
-
-            <div id="medicineContainer"></div>
-
-            <button type="button" class="btn btn-secondary" onclick="addMedicineEntry()">
-                ➕ Tambah Obat
-            </button>
-
-            <button type="submit" class="btn btn-success">
-                ✅ Simpan Data Resep
-            </button>
-        </form>
-    </div>
-
-    <script src="app.js"></script>
-</body>
+        <script src="app.js"></script>
+    </body>
 </html>
