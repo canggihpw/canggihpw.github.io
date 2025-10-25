@@ -23,7 +23,7 @@ const CONFIG = {
 
   // Token expiration (optional, in days)
   // Set to 0 to disable expiration
-  TOKEN_EXPIRY_DAYS: 30,
+  TOKEN_EXPIRY_DAYS: 0,
 };
 
 // ========================================
