@@ -17,8 +17,11 @@ const CONFIG = {
   // WARNING: These are visible in the code. For better security, use backend validation
   VALID_TOKENS: [
     "resep2025", // Example: simple token
-    "dokter-team-1", // Example: team-specific token
-    "pharmacist-access", // Example: role-specific token
+    "akun-1", // Example: team-specific token
+    "akun-2", // Example: role-specific token
+    "akun-3", // Example: role-specific token
+    "akun-4", // Example: role-specific token
+    "akun-5", // Example: role-specific token
   ],
 
   // Token expiration (optional, in days)
@@ -60,8 +63,12 @@ function addMedicineEntry() {
                     <option value="kaplet">Kaplet</option>
                     <option value="suspensi">Suspensi</option>
                     <option value="suppositoria">Suppositoria</option>
-                    <option value="gel">Gel</option>
-                    <option value="krim">Krim</option>
+                    <option value="topikal">Topikal</option>
+                    <option value="tetes mata">Tetes Mata</option>
+                    <option value="tetes telinga">Tetes Telinga</option>
+                    <option value="salep mata">Salep Mata</option>
+                    <option value="nebule">Nebule</option>
+                    <option value="inhaler">Inhaler/Inhalasi</option>
                 </select>
             </div>
 
@@ -77,7 +84,10 @@ function addMedicineEntry() {
                 <select id="satuanDosis-${medicineCount}" name="satuanDosis" required>
                     <option value="">Pilih...</option>
                     <option value="ml">ml</option>
+                    <option value="mg">mg</option>
                     <option value="g">g</option>
+                    <option value="mg/ml">mg/ml</option>
+                    <option value="%">%</option>
                     <option value="IU">IU</option>
                 </select>
             </div>
@@ -96,6 +106,9 @@ function addMedicineEntry() {
                     <option value="botol">Botol</option>
                     <option value="tablet">Tablet</option>
                     <option value="kapsul">Kapsul</option>
+                    <option value="tube">Tube</option>
+                    <option value="pcs">Pcs</option>
+                    <option value="buah">Buah</option>
                 </select>
             </div>
 
