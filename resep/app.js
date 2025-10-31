@@ -87,6 +87,7 @@ function addMedicineEntry() {
                     <option value="mg">mg</option>
                     <option value="g">g</option>
                     <option value="mg/ml">mg/ml</option>
+                    <option value="mcg">mcg</option>
                     <option value="%">%</option>
                     <option value="IU">IU</option>
                 </select>
@@ -107,8 +108,7 @@ function addMedicineEntry() {
                     <option value="tablet">Tablet</option>
                     <option value="kapsul">Kapsul</option>
                     <option value="tube">Tube</option>
-                    <option value="pcs">Pcs</option>
-                    <option value="buah">Buah</option>
+                    <option value="bungkus">Bungkus</option>
                 </select>
             </div>
 
