@@ -69,6 +69,7 @@ function addMedicineEntry() {
                     <option value="salep mata">Salep Mata</option>
                     <option value="nebule">Nebule</option>
                     <option value="inhaler">Inhaler/Inhalasi</option>
+                    <option value="serbuk">Serbuk</option>
                 </select>
             </div>
 
