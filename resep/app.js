@@ -4,7 +4,7 @@
 const CONFIG = {
   // Google Sheets Web App URL (will be configured after deployment)
   GOOGLE_SHEETS_URL:
-    "https://script.google.com/macros/s/AKfycbwWxRK-OmUfZQrF82r4V4_gEY_f0LKXN17oHBlwsIhuY1Qw1HdQs6pFd4qA_2g8llhTyQ/exec",
+    "https://script.google.com/macros/s/AKfycbwfhMtKSWNqebhRusRedYl2C7Pa66c64zhiT0-fs7hjZ6lcVYh9pzkx5SkPYeSVSX4Ucw/exec",
 
   // For testing without backend, set this to true
   DEMO_MODE: false,
@@ -16,12 +16,7 @@ const CONFIG = {
   // Valid access tokens (add multiple tokens for different users/teams)
   // WARNING: These are visible in the code. For better security, use backend validation
   VALID_TOKENS: [
-    "resep2025", // Example: simple token
-    "akun-1", // Example: team-specific token
-    "akun-2", // Example: role-specific token
-    "akun-3", // Example: role-specific token
-    "akun-4", // Example: role-specific token
-    "akun-5", // Example: role-specific token
+    "resep2026", // Example: simple token
   ],
 
   // Token expiration (optional, in days)
@@ -74,12 +69,26 @@ function addMedicineEntry() {
             </div>
 
             <div class="form-group">
-                <label for="dosis-${medicineCount}">Dosis *</label>
-                <input type="number" id="dosis-${medicineCount}" name="dosis" required step="0.01" min="0" placeholder="Contoh: 500">
+                <label for="kekuatanSediaan-${medicineCount}">Kekuatan Sediaan *</label>
+                <select id="kekuatanSediaan-${medicineCount}" name="kekuatanSediaan" required>
+                    <option value="">Pilih...</option>
+                    <option value="ml">ml</option>
+                    <option value="mg">mg</option>
+                    <option value="g">g</option>
+                    <option value="mg/ml">mg/ml</option>
+                    <option value="mcg">mcg</option>
+                    <option value="%">%</option>
+                    <option value="IU">IU</option>
+                </select>
             </div>
         </div>
 
         <div class="row">
+            <div class="form-group">
+                <label for="dosis-${medicineCount}">Dosis sekali pakai *</label>
+                <input type="number" id="dosis-${medicineCount}" name="dosis" required step="0.01" min="0" placeholder="Contoh: 500">
+            </div>
+
             <div class="form-group">
                 <label for="satuanDosis-${medicineCount}">Satuan Dosis *</label>
                 <select id="satuanDosis-${medicineCount}" name="satuanDosis" required>
@@ -91,6 +100,26 @@ function addMedicineEntry() {
                     <option value="mcg">mcg</option>
                     <option value="%">%</option>
                     <option value="IU">IU</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="rutePemberian-${medicineCount}">Rute Pemberian *</label>
+                <select id="rutePemberian-${medicineCount}" name="rutePemberian" required>
+                    <option value="">Pilih...</option>
+                    <option value="bukal">Bukal</option>
+                    <option value="sublingual">Sublingual</option>
+                    <option value="oral">Oral</option>
+                    <option value="topikal kulit">Topikal Kulit</option>
+                    <option value="oftalmik">Oftalmik</option>
+                    <option value="otik">Otik</option>
+                    <option value="rektal">Rektal</option>
+                    <option value="vaginal">Vaginal</option>
+                    <option value="injeksi/parentetal">Injeksi/Parentetal</option>
+                    <option value="lainnya">Lainnya</option>
+                    <option value="tidak dapat ditentukan">Tidak Dapat Ditentukan</option>
                 </select>
             </div>
 
@@ -149,6 +178,16 @@ function collectFormData() {
     umur: parseInt(document.getElementById("umur").value),
     bbKg: parseInt(document.getElementById("bb").value),
     diagnosa: document.getElementById("diagnosa").value || "",
+    kadarAsamUrat: document.getElementById("kadarAsamUrat").value
+      ? parseFloat(document.getElementById("kadarAsamUrat").value)
+      : "",
+    kadarGulaDarah: document.getElementById("kadarGulaDarah").value
+      ? parseFloat(document.getElementById("kadarGulaDarah").value)
+      : "",
+    kadarKolesterol: document.getElementById("kadarKolesterol").value
+      ? parseFloat(document.getElementById("kadarKolesterol").value)
+      : "",
+    adaAntibiotik: document.getElementById("adaAntibiotik").value,
     identitasDokter: getCheckboxValue("identitasDokter"),
     identitasPasien: getCheckboxValue("identitasPasien"),
     tanggalResepCheck: getCheckboxValue("tanggalResepCheck"),
@@ -170,8 +209,10 @@ function collectFormData() {
       noResep: resepData.noResep,
       namaObat: document.getElementById(`namaObat-${id}`).value,
       bentukSediaan: document.getElementById(`bentukSediaan-${id}`).value,
+      kekuatanSediaan: document.getElementById(`kekuatanSediaan-${id}`).value,
       dosis: parseFloat(document.getElementById(`dosis-${id}`).value),
       satuanDosis: document.getElementById(`satuanDosis-${id}`).value,
+      rutePemberian: document.getElementById(`rutePemberian-${id}`).value,
       aturanPakai: document.getElementById(`aturanPakai-${id}`).value,
       jumlahObat: parseInt(document.getElementById(`jumlahObat-${id}`).value),
       satuanObat: document.getElementById(`satuanObat-${id}`).value,
