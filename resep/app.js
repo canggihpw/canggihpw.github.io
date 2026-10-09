@@ -4,7 +4,7 @@
 const CONFIG = {
   // Google Sheets Web App URL (will be configured after deployment)
   GOOGLE_SHEETS_URL:
-    "https://script.google.com/macros/s/AKfycbwfhMtKSWNqebhRusRedYl2C7Pa66c64zhiT0-fs7hjZ6lcVYh9pzkx5SkPYeSVSX4Ucw/exec",
+    "https://script.google.com/macros/s/AKfycbwu6BHv54nSkOPKsRaWwAyoeuDCTCDLMiT5SRnQKQnJv8WAaB6anIIboxTF0kTeAlZ8iQ/exec",
 
   // For testing without backend, set this to true
   DEMO_MODE: false,
@@ -41,12 +41,12 @@ function addMedicineEntry() {
         <h3>Obat #${medicineCount}</h3>
         ${medicineCount > 1 ? `<button type="button" class="remove-medicine" onclick="removeMedicineEntry(${medicineCount})">❌ Hapus</button>` : ""}
 
-        <div class="form-group">
-            <label for="namaObat-${medicineCount}">Nama Obat *</label>
-            <input type="text" id="namaObat-${medicineCount}" name="namaObat" required placeholder="Contoh: Paracetamol">
-        </div>
-
         <div class="row">
+            <div class="form-group">
+                <label for="namaObat-${medicineCount}">Nama Obat *</label>
+                <input type="text" id="namaObat-${medicineCount}" name="namaObat" required placeholder="Contoh: Paracetamol">
+            </div>
+
             <div class="form-group">
                 <label for="bentukSediaan-${medicineCount}">Bentuk Sediaan *</label>
                 <select id="bentukSediaan-${medicineCount}" name="bentukSediaan" required>
@@ -67,10 +67,17 @@ function addMedicineEntry() {
                     <option value="serbuk">Serbuk</option>
                 </select>
             </div>
+        </div>
 
+        <div class="row">
             <div class="form-group">
                 <label for="kekuatanSediaan-${medicineCount}">Kekuatan Sediaan *</label>
-                <select id="kekuatanSediaan-${medicineCount}" name="kekuatanSediaan" required>
+                <input type="text" id="kekuatanSediaan-${medicineCount}" name="kekuatanSediaan" required placeholder="Contoh: 500">
+            </div>
+
+            <div class="form-group">
+                <label for="satuanKekuatanSediaan-${medicineCount}">Satuan Kekuatan Sediaan *</label>
+                <select id="satuanKekuatanSediaan-${medicineCount}" name="satuanKekuatanSediaan" required>
                     <option value="">Pilih...</option>
                     <option value="ml">ml</option>
                     <option value="mg">mg</option>
@@ -210,6 +217,9 @@ function collectFormData() {
       namaObat: document.getElementById(`namaObat-${id}`).value,
       bentukSediaan: document.getElementById(`bentukSediaan-${id}`).value,
       kekuatanSediaan: document.getElementById(`kekuatanSediaan-${id}`).value,
+      satuanKekuatanSediaan: document.getElementById(
+        `satuanKekuatanSediaan-${id}`,
+      ).value,
       dosis: parseFloat(document.getElementById(`dosis-${id}`).value),
       satuanDosis: document.getElementById(`satuanDosis-${id}`).value,
       rutePemberian: document.getElementById(`rutePemberian-${id}`).value,
